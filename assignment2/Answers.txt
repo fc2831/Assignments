@@ -73,4 +73,4 @@ Compute the total number of earthquakes each year and then output a sorted list 
 
 Turn in your homework by sharing it with us on a GitHub repository. Share this repository with us. Clone the repository to your laptop. Save your answers to the exercises above in a text file called answers.txt. Use git to commit answers.txt to your repository on your laptop, and the
 
-n push the changes to the remote repository on GitHub.
+12A: Uploaded in the assignments diretory in githubn push the changes to the remote repository on GitHub.
