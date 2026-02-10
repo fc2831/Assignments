@@ -1,0 +1,76 @@
+How many earthquakes are listed in the table?1A Command: wc -l signif.txt.tsv 5959 total number data rows and total number of earthquakes - 1 = 5958
+
+
+How many columns are in the tabl
+2A head -n 1 signif.txt.tsv | tr "\t" "\n" | wc -l
+?
+
+Use the cut command to create a new file that just has the data from the columns for YEAR, EQ_PRIMARY and COUNTRY. Hint: you can get the column numbers by using the head command to view the first row and then visually count the column numbers for the above fields (there is also a unix command to do this, but we didn't cover it in class). Call the new data file 'Year_Mag_Country.tsv'. You can use 'Year_Mag_Country.tsv' for the rest of the exercises be
+3A cut -f3,10,18 signif.txt.tsv > Year_Mag_Count.tsvlow.
+
+EQ_PRIMARY is the assigned earthquake magnitude. With your new Year_Mag_Count.tsvry.tsv', sort the data based on the numeric value of the EQ_PRIMARY column, then list the lines for the top ten largest earth
+4A sort -n -r -k2,2 Year_Mag_Count.tsv | head -n 10
+1960     9.5    CHILE
+1964     9.2    USA
+2011     9.1    JAPAN
+2004     9.1    INDONESIA
+1952     9.0    RUSSIA
+1700     9.0    USA
+2010     8.8    CHILE
+1812     8.8    USA
+1716     8.8    PERU
+1965     8.7    USAuakes.
+
+How many unique countries are listed in the database? Use cut,sort,uniq, wc and a few pipes | to form a single expression that answe
+5A 154, cut -f3 Year_Mag_Count.tsv | sort | uniq | wc -lrs this question.
+
+Use the grep command to count how many earthquakes in the database are located in the U
+6A 294, cut -f3 Year_Mag_Count.tsv | sort | uniq | wc -lSA or USA TERRITORY
+
+Expanding on the previous exercise, refine your command sequence so that it only counts earthquakes in the USA and not ones in USA TERRITORY. Hint: use the -v argument with grep and you may need to call 7A 255, cut -f3 Year_Mag_Count.tsv | sort | uniq | wc -l
+grep more than once.
+
+Compute the total number of earthquakes in each country and then display the top ten countries along with the number of earthquakes. Hint: this can be done with a command sequence similar to exercise 5, but requires a specific argumen
+8A cut -f3 Year_Mag_Count.tsv | sort | uniq -c | sort -nr | head -n 10
+    579 CHINA
+    400 JAPAN
+    365 IRAN
+    363 INDONESIA
+    324 ITALY
+    319 TURKEY
+    259 GREECE
+    255 USA
+    207 PHILIPPINES
+    193 MEXICOt to be used with uniq.
+
+Create a shell script named countEq.sh that returns the total number of earthquakes for a given country, where the country is specified as the option when calling the script. Hint: see the Shell Script notes and use the special variable $1. Paste your script below and give an exampl
+9A  cut -f3 Year_Mag_Count.tsv | grep -x $1 | wc -l 
+bash countEq.sh USA
+255e calling sequence for country USA.
+
+Create a shell script named countEq_getLargestEq.sh that returns both the total number of earthquakes AND the largest earthquake for a given country, where the country is specified as the option when calling the script. Use the echo command before each command to create labels for each returned value. Paste your script below and give an exampl10A numberEarthquakes=$(cut -f3 Year_Mag_Count.tsv | grep -x "$1" | wc -l)
+echo " Total number of earthquakes $1 $numberEarthquakes" 
+
+LargestEarthquake=$(cut -f2,3 Year_Mag_Count.tsv | sort -nr | grep "$1" | head -n 1 | cut -f1)
+echo "The Largest Earthquake there: $LargestEarthquake"
+bash countEq_getLargestEq.sh CHILE
+ Total number of earthquakes CHILE 192
+The Largest Earthquake there:  9
+
+.5e calling sequence for country CHILE.
+
+Compute the total number of earthquakes each year and then output a sorted list of the top ten years with the most earthquakes. Paste11A cut -f1 Year_Mag_Count.tsv | sort | uniq -c | sort -nr | head -n 10
+     78 2004
+     77 2008
+     72 2003
+     67 2007
+     62 2010
+     61 2006
+     60 2009
+     60 2005
+     60 2002
+     59 2011 your command and the top ten list below.
+
+Turn in your homework by sharing it with us on a GitHub repository. Share this repository with us. Clone the repository to your laptop. Save your answers to the exercises above in a text file called answers.txt. Use git to commit answers.txt to your repository on your laptop, and the
+
+n push the changes to the remote repository on GitHub.
