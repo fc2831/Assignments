@@ -3,7 +3,7 @@ How many earthquakes are listed in the table?1A Command: wc -l signif.txt.tsv 5
 
 How many columns are in the tabl
 2A head -n 1 signif.txt.tsv | tr "\t" "\n" | wc -l
-?
+
 
 Use the cut command to create a new file that just has the data from the columns for YEAR, EQ_PRIMARY and COUNTRY. Hint: you can get the column numbers by using the head command to view the first row and then visually count the column numbers for the above fields (there is also a unix command to do this, but we didn't cover it in class). Call the new data file 'Year_Mag_Country.tsv'. You can use 'Year_Mag_Country.tsv' for the rest of the exercises be
 3A cut -f3,10,18 signif.txt.tsv > Year_Mag_Count.tsvlow.
@@ -41,7 +41,7 @@ Compute the total number of earthquakes in each country and then display the top
     259 GREECE
     255 USA
     207 PHILIPPINES
-    193 MEXICOt to be used with uniq.
+    193 MEXICO t to be used with uniq.
 
 Create a shell script named countEq.sh that returns the total number of earthquakes for a given country, where the country is specified as the option when calling the script. Hint: see the Shell Script notes and use the special variable $1. Paste your script below and give an exampl
 9A  cut -f3 Year_Mag_Count.tsv | grep -x $1 | wc -l 
